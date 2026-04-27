@@ -14,33 +14,48 @@
             --gradient-bar-colorful: linear-gradient(90deg, #4facfe, #00f2fe, #f5576c, #ff8c00, #f9d423);
         }
 
-        /* --- Background Web pakai BANNER.PNG --- */
+        /* --- SETUP BACKGROUND BLUR (TRIK RAHASIA) --- */
         body {
             margin: 0;
             padding: 0;
-            /* Pastikan di repository Github kamu, nama filenya BENAR-BENAR huruf besar semua: BANNER.PNG */
-            background-image: url('assets/BANNER.PNG'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             color: var(--text-white);
             font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
-            /* Tambahan warna fallback gelap jika gambar telat loading */
-            background-color: #111111; 
+            background-color: #000; /* Warna dasar hitam buat jaga-jaga */
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ini yang bikin gambar BANNER.PNG jadi background blur full layar */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -5%; 
+            left: -5%;
+            width: 110%; 
+            height: 110%; /* Dilebihin 10% biar pinggiran blurnya rapi, nggak ada celah putih */
+            
+            /* PASTIKAN NAMA FILE INI SESUAI SAMA YANG DI GITHUB (HURUF BESAR/KECILNYA) */
+            background-image: url('assets/BANNER.PNG'); 
+            
+            background-size: cover;
+            background-position: center;
+            /* Setingan blur & gelapnya di sini (mirip web LGOACE) */
+            filter: blur(25px) brightness(0.3); 
+            z-index: -1; /* Posisi paling belakang */
         }
 
         .mobile-wrapper {
             width: 100%;
             max-width: 480px;
-            /* Latar belakang semi-transparan & Efek Blur */
-            background-color: rgba(15, 15, 15, 0.7); 
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            /* Latar dibikin transparan hitam biar background blurnya nembus cantik */
+            background-color: rgba(10, 10, 10, 0.4); 
             min-height: 100vh;
-            box-shadow: 0 0 30px rgba(255, 106, 0, 0.2);
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
             padding-bottom: 30px;
+            position: relative;
         }
 
         /* --- Header & Logo --- */
@@ -90,7 +105,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            background: rgba(34, 34, 34, 0.8);
+            background: rgba(20, 20, 20, 0.6);
             padding: 12px;
             border-radius: 8px;
             margin: 0 15px;
@@ -104,7 +119,7 @@
             font-size: 14px;
         }
 
-        /* --- Progress Bar Animasi Warna Warni --- */
+        /* --- Progress Bar Animasi --- */
         .stats-box {
             margin: 20px 15px;
             border: 1px solid var(--border-orange);
@@ -187,6 +202,10 @@
             font-size: 13px;
             font-weight: bold;
             color: var(--text-gold);
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 6px;
             opacity: 0;
             transform: translateY(-10px);
             transition: all 0.5s ease;
@@ -206,7 +225,7 @@
         }
 
         .btn {
-            background: rgba(30, 30, 30, 0.9);
+            background: rgba(15, 15, 15, 0.9);
             color: var(--text-gold);
             border: 1px solid #444;
             padding: 16px 10px;
@@ -246,7 +265,7 @@
     <div class="mobile-wrapper">
         
         <div class="header">
-            <img src="assets/LOGO.PNG" alt="LGOLUX" class="logo-img" onerror="this.style.display='none'">
+            <img src="assets/LOGO.PNG" alt="LGOLUX" class="logo-img">
         </div>
 
         <div class="running-text-container">
@@ -267,7 +286,7 @@
             <div class="stat-item">
                 <div class="stat-label">
                     <span>TRAFFIC JACKPOT</span>
-                    <span id="traffic-status">HIGH</span>
+                    <span id="traffic-status">HIGH 🔥</span>
                 </div>
                 <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
             </div>
@@ -282,7 +301,7 @@
 
         <div class="banner">
             <a href="#" class="universal-link">
-                <img src="assets/BANNER.PNG" alt="Banner Promo LGOLUX" class="banner-img" onerror="this.style.display='none'">
+                <img src="assets/BANNER.PNG" alt="Banner Promo LGOLUX" class="banner-img">
             </a>
         </div>
 
@@ -306,9 +325,7 @@
     </div>
 
     <script>
-        // ==========================================
-        // 1. SETTING LINK UNIVERSAL
-        // ==========================================
+        // SETTING LINK UNIVERSAL
         const LINK_UTAMA = "https://mez.ink/daftarbarenglgolux"; 
 
         const allButtons = document.querySelectorAll('.universal-link');
@@ -317,9 +334,7 @@
             button.target = "_blank"; 
         });
 
-        // ==========================================
-        // 2. ANIMASI ANGKA RTP
-        // ==========================================
+        // ANIMASI ANGKA RTP
         setInterval(function() {
             let randomRTP = (Math.random() * (99.9 - 90.0) + 90.0).toFixed(1);
             document.getElementById('rtp-number').innerText = randomRTP;
@@ -329,16 +344,14 @@
 
             if (randomRTP >= 95.0) {
                 statusRTP.innerText = "VERY HIGH";
-                trafficStatus.innerText = "VERY HIGH";
+                trafficStatus.innerText = "VERY HIGH 🔥";
             } else {
                 statusRTP.innerText = "HIGH";
-                trafficStatus.innerText = "HIGH";
+                trafficStatus.innerText = "HIGH 🔥";
             }
         }, 3000); 
 
-        // ==========================================
-        // 3. LOGIKA POPUP RANDOM WD SIMPEL JUTAAN RUPIAH
-        // ==========================================
+        // LOGIKA POPUP RANDOM WD SIMPEL JUTAAN RUPIAH
         const huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         
         function formatRupiah(angka) {
