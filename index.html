@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LGOLUX - SITUS TERBAIK SEASIA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* --- Tema Global --- */
         :root {
             --text-gold: #f4c430;
             --text-white: #ffffff;
             --border-orange: #ff6a00;
-            /* Gradasi persis seperti konsep: Cyan -> Biru -> Merah -> Oranye -> Kuning */
-            --gradient-bar-colorful: linear-gradient(90deg, #4facfe 0%, #00f2fe 20%, #f5576c 50%, #ff8c00 80%, #f9d423 100%);
+            --gradient-bar-colorful: linear-gradient(90deg, #4facfe, #00f2fe, #f5576c, #ff8c00, #f9d423);
         }
 
-        /* --- Background Web --- */
+        /* --- Background Web pakai BANNER.PNG --- */
         body {
             margin: 0;
             padding: 0;
-            background-image: url('assets/BANNER.JPG');
+            background-image: url('assets/BANNER.PNG'); /* Sesuaikan nama file assets kamu */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: var(--text-white);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif; /* Menggunakan font Montserrat */
             display: flex;
             justify-content: center;
         }
@@ -31,9 +31,10 @@
         .mobile-wrapper {
             width: 100%;
             max-width: 480px;
-            background-color: rgba(10, 10, 10, 0.9); /* Sedikit lebih gelap agar teks kontras */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            /* Latar belakang semi-transparan agar banner di belakang terlihat */
+            background-color: rgba(15, 15, 15, 0.7); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             min-height: 100vh;
             box-shadow: 0 0 30px rgba(255, 106, 0, 0.2);
             padding-bottom: 30px;
@@ -48,8 +49,8 @@
         }
         
         .logo-img {
-            width: 70%;
-            max-width: 260px;
+            width: 65%;
+            max-width: 250px;
             height: auto;
         }
 
@@ -58,18 +59,18 @@
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
-            margin: 15px 0 10px 0;
-            padding: 8px 0;
-            border-top: 1px solid rgba(255, 106, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 106, 0, 0.2);
-            background: rgba(0, 0, 0, 0.3);
+            margin: 15px 0;
+            background: rgba(255, 106, 0, 0.1);
+            padding: 5px 0;
+            border-top: 1px solid rgba(255, 106, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 106, 0, 0.3);
         }
 
         .running-text-content {
             display: inline-block;
             color: var(--text-gold);
             font-size: 11px;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             font-weight: bold;
             text-transform: uppercase;
             animation: marquee 15s linear infinite;
@@ -86,12 +87,11 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            background: #1a1a1a;
-            padding: 14px;
+            background: rgba(34, 34, 34, 0.8);
+            padding: 12px;
             border-radius: 8px;
-            margin: 0 15px 20px 15px;
-            border: 1px solid #333;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            margin: 0 15px;
+            border: 1px solid #444;
         }
 
         .nav-menu a {
@@ -99,49 +99,18 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
-            letter-spacing: 1px;
         }
 
-        /* ========================================= */
-        /* HERO CONTAINER (GABUNGAN STATS & BANNER)  */
-        /* ========================================= */
-        .hero-container {
-            margin: 0 15px;
+        /* --- Progress Bar Animasi Warna Warni (Tanpa Api) --- */
+        .stats-box {
+            margin: 20px 15px;
             border: 1px solid var(--border-orange);
-            border-radius: 12px;
+            border-radius: 10px;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 0 20px rgba(255, 106, 0, 0.3), inset 0 0 15px rgba(255, 106, 0, 0.1);
-            overflow: hidden;
-            position: relative;
         }
 
-        /* Efek Kilap yang menyapu seluruh kotak (Stats + Banner) */
-        .hero-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.2) 70%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            animation: shineBanner 4s infinite; 
-            pointer-events: none; 
-            z-index: 10;
-        }
-
-        @keyframes shineBanner {
-            0% { left: -150%; }
-            30% { left: 200%; } 
-            100% { left: 200%; } 
-        }
-
-        /* --- Bagian Stats (Di dalam Hero Container) --- */
-        .stats-section {
-            padding: 15px 15px 10px 15px;
-        }
-
-        .stat-item { margin-bottom: 12px; }
+        .stat-item { margin-bottom: 15px; }
         .stat-item:last-child { margin-bottom: 0; }
 
         .stat-label {
@@ -151,7 +120,6 @@
             font-weight: bold;
             color: var(--text-gold);
             margin-bottom: 8px;
-            text-transform: uppercase;
         }
 
         .bar-bg {
@@ -159,7 +127,6 @@
             height: 10px;
             background: #222;
             border-radius: 5px;
-            box-shadow: inset 0 0 5px #000;
         }
 
         .bar-fill {
@@ -168,22 +135,6 @@
             background-size: 300% 100%;
             border-radius: 5px;
             animation: majuMundur 3s ease-in-out infinite alternate; 
-            position: relative; 
-        }
-
-        .bar-fill::after {
-            content: '🔥';
-            position: absolute;
-            right: -8px; 
-            top: -6px; 
-            font-size: 14px;
-            filter: drop-shadow(0 0 5px #ff6a00);
-            animation: fireFlicker 0.5s infinite alternate; 
-        }
-
-        @keyframes fireFlicker {
-            0% { transform: scale(0.9) rotate(-5deg); opacity: 0.8; }
-            100% { transform: scale(1.2) rotate(5deg); opacity: 1; }
         }
 
         @keyframes majuMundur {
@@ -191,39 +142,55 @@
             100% { background-position: 100% 50%; }
         }
 
-        /* --- Bagian Banner (Di dalam Hero Container) --- */
-        .banner-section {
-            width: 100%;
-            display: block;
-            border-top: 1px solid rgba(255, 106, 0, 0.2); /* Garis pemisah tipis antara stats dan gambar */
+        /* --- Banner Mengkilau --- */
+        .banner {
+            margin: 0 15px;
+            border: 1px solid var(--border-orange);
+            border-radius: 12px;
+            overflow: hidden; 
+            box-shadow: 0 0 20px rgba(255,106,0,0.3);
+            position: relative; 
         }
 
         .banner-img {
             width: 100%;
             height: auto;
             display: block;
-            border-bottom-left-radius: 11px;
-            border-bottom-right-radius: 11px;
         }
 
-        /* --- POPUP WD RANDOM (Gaya Konsep Gambar 2) --- */
-        .wd-popup {
-            margin: 15px;
-            background: #111;
-            border: 1px solid var(--border-orange);
-            border-radius: 6px;
-            padding: 12px 10px;
+        .banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shineBanner 3s infinite; 
+            pointer-events: none; 
+        }
+
+        @keyframes shineBanner {
+            0% { left: -150%; }
+            30% { left: 200%; } 
+            100% { left: 200%; } 
+        }
+
+        /* --- NOTIFIKASI LIVE WD SIMPEL (TANPA KOTAK) --- */
+        .wd-popup-simple {
+            margin: 20px 15px 5px 15px;
             text-align: center;
             font-size: 13px;
             font-weight: bold;
             color: var(--text-gold);
-            box-shadow: 0 0 10px rgba(255, 106, 0, 0.1);
+            /* Transisi untuk animasi muncul tenggelam */
             opacity: 0;
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             transition: all 0.5s ease;
         }
 
-        .wd-popup.show {
+        .wd-popup-simple.show {
             opacity: 1;
             transform: translateY(0);
         }
@@ -233,11 +200,11 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin: 0 15px 20px 15px;
+            margin: 15px 15px 20px 15px;
         }
 
         .btn {
-            background: #1a1a1a;
+            background: rgba(30, 30, 30, 0.9);
             color: var(--text-gold);
             border: 1px solid #444;
             padding: 16px 10px;
@@ -247,16 +214,16 @@
             text-decoration: none;
             font-size: 13px;
             position: relative;
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
         }
 
+        /* Tombol Menyala */
         .btn-glow {
             border-color: var(--border-orange);
             animation: glowingPulse 1.5s infinite alternate;
         }
 
         @keyframes glowingPulse {
-            0% { box-shadow: 0 0 2px var(--border-orange), inset 0 0 5px rgba(0,0,0,0.8); }
+            0% { box-shadow: 0 0 2px var(--border-orange); }
             100% { 
                 box-shadow: 0 0 15px var(--border-orange), inset 0 0 5px var(--border-orange); 
                 border-color: #ff9d00;
@@ -294,32 +261,30 @@
             <a href="#" class="universal-link">SLOT GACOR</a>
         </div>
 
-        <div class="hero-container">
-            
-            <div class="stats-section">
-                <div class="stat-item">
-                    <div class="stat-label">
-                        <span>TRAFFIC JACKPOT</span>
-                        <span id="traffic-status">HIGH</span>
-                    </div>
-                    <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+        <div class="stats-box">
+            <div class="stat-item">
+                <div class="stat-label">
+                    <span>TRAFFIC JACKPOT</span>
+                    <span id="traffic-status">HIGH</span>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-label">
-                        <span>RTP LIVE STATISTIC</span>
-                        <span><span id="rtp-number">98.8</span>% <span id="rtp-status">VERY HIGH</span></span>
-                    </div>
-                    <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
-                </div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
             </div>
-
-            <a href="#" class="universal-link banner-section">
-                <img src="assets/BANNER.JPG" alt="Banner Promo LGOLUX" class="banner-img">
-            </a>
-
+            <div class="stat-item">
+                <div class="stat-label">
+                    <span>RTP LIVE STATISTIC</span>
+                    <span><span id="rtp-number">98.8</span>% <span id="rtp-status">VERY HIGH</span></span>
+                </div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+            </div>
         </div>
 
-        <div id="wd-popup" class="wd-popup">
+        <div class="banner">
+            <a href="#" class="universal-link">
+                <img src="assets/BANNER.JPG" alt="Banner Promo LGOLUX" class="banner-img">
+            </a>
+        </div>
+
+        <div id="wd-popup-simple" class="wd-popup-simple">
             💰 WD BERHASIL • Member <span id="wd-user">M***</span> WD <span id="wd-amount">Rp 3.500.000</span>
         </div>
 
@@ -370,7 +335,7 @@
         }, 3000); 
 
         // ==========================================
-        // 3. LOGIKA POPUP RANDOM WD JUTAAN RUPIAH
+        // 3. LOGIKA POPUP RANDOM WD SIMPEL JUTAAN RUPIAH
         // ==========================================
         const huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         
@@ -379,26 +344,31 @@
         }
 
         setInterval(function() {
-            const popup = document.getElementById('wd-popup');
+            const popup = document.getElementById('wd-popup-simple');
             
+            // Hilangkan dulu (efek fade out)
             popup.classList.remove('show');
             
             setTimeout(function() {
+                // Generate huruf depan random
                 const randomHuruf = huruf.charAt(Math.floor(Math.random() * huruf.length));
                 document.getElementById('wd-user').innerText = randomHuruf + '***';
                 
-                const randomJuta = Math.floor(Math.random() * 24) + 1; 
-                const randomRatusan = (Math.floor(Math.random() * 19) + 1) * 50000; 
+                // Generate angka random jutaan (1 juta - 25 juta, kelipatan 50rb agar realistis)
+                const randomJuta = Math.floor(Math.random() * 24) + 1; // 1-24 jt
+                const randomRatusan = (Math.floor(Math.random() * 19) + 1) * 50000; // Kelipatan 50k
                 const totalWD = (randomJuta * 1000000) + randomRatusan;
                 
                 document.getElementById('wd-amount').innerText = formatRupiah(totalWD);
                 
+                // Munculkan lagi (efek fade in)
                 popup.classList.add('show');
-            }, 600); 
+            }, 600); // Jeda sejenak sebelum teks baru muncul
 
-        }, 4000); 
+        }, 4000); // Ganti data setiap 4 detik
 
-        setTimeout(() => document.getElementById('wd-popup').classList.add('show'), 500);
+        // Trigger pertama kali agar langsung muncul
+        setTimeout(() => document.getElementById('wd-popup-simple').classList.add('show'), 500);
 
     </script>
 
