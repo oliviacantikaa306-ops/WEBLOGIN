@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LGOLUX - Landing Page</title>
     <style>
-        /* --- Tema Global (Diubah ke Orange) --- */
+        /* --- Tema Global (Orange) --- */
         :root {
             --bg-main: #0a0000;
             --bg-container: #111111;
             --text-gold: #f4c430;
             --text-white: #ffffff;
-            
-            /* Warna Aksen Baru: Oranye */
-            --border-orange: #ff6a00; /* Neon Orange untuk Border */
-            --accent-orange: #d35400; /* Oranye Tua untuk Badge */
-            
-            /* Gradient Bar disesuaikan jadi Oranye ke Kuning */
+            --border-orange: #ff6a00;
             --gradient-bar: linear-gradient(90deg, #ff8c00 0%, #f9d423 100%);
         }
 
@@ -35,7 +30,6 @@
             max-width: 480px;
             background-color: var(--bg-container);
             min-height: 100vh;
-            /* Shadow diubah jadi semburat oranye */
             box-shadow: 0 0 30px rgba(255, 106, 0, 0.15);
             padding-bottom: 30px;
         }
@@ -43,33 +37,24 @@
         /* --- Header & Logo --- */
         .header {
             text-align: center;
-            padding: 25px 15px 5px; /* Padding bawah dikurangi sedikit */
+            padding: 25px 15px 5px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
         }
         
         .logo-img {
-            width: 80%;
-            max-width: 320px;
+            width: 65%; /* Disesuaikan agar logo tidak terlalu memakan tempat */
+            max-width: 250px;
             height: auto;
-            margin-bottom: 5px;
-        }
-
-        .logo-sub {
-            font-size: 12px;
-            color: var(--text-white);
-            letter-spacing: 3px;
-            font-weight: bold;
         }
 
         /* --- CSS untuk Running Text --- */
         .running-text-container {
             width: 100%;
-            overflow: hidden; /* Sembunyikan teks yang keluar batas */
-            white-space: nowrap; /* Paksa teks jadi satu baris */
+            overflow: hidden;
+            white-space: nowrap;
             margin: 15px 0;
-            background: rgba(255, 106, 0, 0.05); /* Background tipis oranye */
+            background: rgba(255, 106, 0, 0.05);
             padding: 5px 0;
             border-top: 1px solid rgba(255, 106, 0, 0.2);
             border-bottom: 1px solid rgba(255, 106, 0, 0.2);
@@ -82,16 +67,13 @@
             letter-spacing: 1px;
             font-weight: bold;
             text-transform: uppercase;
-            
-            /* Animasi Gerak Jalan */
             animation: marquee 15s linear infinite;
-            padding-left: 100%; /* Mulai dari luar kanan */
+            padding-left: 100%;
         }
 
-        /* Definisi Gerakan Animasi */
         @keyframes marquee {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); } /* Berjalan ke kiri penuh */
+            100% { transform: translate(-100%, 0); }
         }
 
         /* --- Menu Login/Daftar --- */
@@ -113,18 +95,16 @@
             font-size: 14px;
         }
 
-        /* --- Progress Bar (Aksen Oranye) --- */
+        /* --- Progress Bar --- */
         .stats-box {
             margin: 20px 15px;
-            border: 1px solid var(--border-orange); /* Border jadi oranye */
+            border: 1px solid var(--border-orange);
             border-radius: 10px;
             padding: 15px;
-            background: rgba(255, 106, 0, 0.03); /* Background tint oranye */
+            background: rgba(255, 106, 0, 0.03);
         }
 
-        .stat-item {
-            margin-bottom: 15px;
-        }
+        .stat-item { margin-bottom: 15px; }
         .stat-item:last-child { margin-bottom: 0; }
 
         .stat-label {
@@ -149,86 +129,20 @@
             border-radius: 4px;
         }
 
-        /* --- Main Banner Area (Aksen Oranye) --- */
+        /* --- Main Banner Area (Diubah jadi simple image container) --- */
         .banner {
             margin: 0 15px;
-            position: relative;
-            border: 1px solid var(--border-orange); /* Border jadi oranye */
+            border: 1px solid var(--border-orange);
             border-radius: 12px;
-            overflow: hidden;
-            height: 400px;
-            /* Shadow diubah jadi semburat oranye */
+            overflow: hidden; /* Agar sudut gambar melengkung mengikuti container */
             box-shadow: 0 0 20px rgba(255,106,0,0.2);
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            padding-bottom: 30px;
+            /* Dihapus nilai height fix-nya agar gambar menyesuaikan otomatis */
         }
 
-        .banner-bg-img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .banner-img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        /* Gambar Neon Teks "LGOLUX" */
-        .neon-img {
-            width: 70%;
-            max-width: 250px;
             height: auto;
-            margin-bottom: 10px;
-            /* Efek drop shadow neon disesuaikan */
-            filter: drop-shadow(0px 0px 8px rgba(255, 106, 0, 0.7));
-        }
-
-        .title-main {
-            font-size: 32px;
-            font-weight: 900;
-            color: var(--text-white);
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 5px #000;
-            margin: 0 0 5px 0;
-        }
-
-        .subtitle {
-            font-size: 10px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-align: center;
-            text-shadow: 1px 1px 3px #000;
-            margin-bottom: 15px;
-        }
-
-        .badges {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-
-        .badge {
-            background: var(--accent-orange); /* Background jadi oranye */
-            font-size: 10px;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 4px;
-            text-align: center;
+            display: block; /* Menghilangkan gap putih di bawah gambar */
         }
 
         /* --- Tombol Bawah --- */
@@ -251,10 +165,7 @@
             font-size: 13px;
         }
 
-        /* Kelas tombol dengan border oranye */
-        .btn-orange-border {
-            border-color: var(--border-orange);
-        }
+        .btn-orange-border { border-color: var(--border-orange); }
 
         .footer {
             text-align: center;
@@ -269,8 +180,7 @@
     <div class="mobile-wrapper">
         
         <div class="header">
-            <img src="assets/logo-lux.png" alt="LGOLUX" class="logo-img">
-            <div class="logo-sub">LIMITED GAMING ONLINE</div>
+            <img src="assets/logo.jpeg" alt="LGOLUX" class="logo-img">
         </div>
 
         <div class="running-text-container">
@@ -305,19 +215,7 @@
         </div>
 
         <div class="banner">
-            <img src="assets/banner-model.png" alt="Model Slot" class="banner-bg-img">
-            
-            <div class="banner-content">
-                <img src="assets/neon-teks-lux.png" alt="Lgolux Neon" class="neon-img">
-                
-                <div class="title-main">TERPERCAYA</div>
-                <div class="subtitle">SLOT-TOGEL-CASINO-SPORTBOOK<br>AMAN, RESMI & TERPERCAYA</div>
-                
-                <div class="badges">
-                    <div class="badge">MINIMAL<br>DEPO 20K</div>
-                    <div class="badge">MINIMAL<br>WEDE 20K</div>
-                </div>
-            </div>
+            <img src="assets/banner.jpeg" alt="Banner Promo LGOLUX" class="banner-img">
         </div>
 
         <div class="button-grid">
