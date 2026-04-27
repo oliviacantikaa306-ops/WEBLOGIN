@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGOLUX - Landing Page</title>
+    <style>
+        /* --- Tema Global (Diubah ke Orange) --- */
+        :root {
+            --bg-main: #0a0000;
+            --bg-container: #111111;
+            --text-gold: #f4c430;
+            --text-white: #ffffff;
+            
+            /* Warna Aksen Baru: Oranye */
+            --border-orange: #ff6a00; /* Neon Orange untuk Border */
+            --accent-orange: #d35400; /* Oranye Tua untuk Badge */
+            
+            /* Gradient Bar disesuaikan jadi Oranye ke Kuning */
+            --gradient-bar: linear-gradient(90deg, #ff8c00 0%, #f9d423 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mobile-wrapper {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg-container);
+            min-height: 100vh;
+            /* Shadow diubah jadi semburat oranye */
+            box-shadow: 0 0 30px rgba(255, 106, 0, 0.15);
+            padding-bottom: 30px;
+        }
+
+        /* --- Header & Logo --- */
+        .header {
+            text-align: center;
+            padding: 25px 15px 5px; /* Padding bawah dikurangi sedikit */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo-img {
+            width: 80%;
+            max-width: 320px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .logo-sub {
+            font-size: 12px;
+            color: var(--text-white);
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        /* --- CSS untuk Running Text --- */
+        .running-text-container {
+            width: 100%;
+            overflow: hidden; /* Sembunyikan teks yang keluar batas */
+            white-space: nowrap; /* Paksa teks jadi satu baris */
+            margin: 15px 0;
+            background: rgba(255, 106, 0, 0.05); /* Background tipis oranye */
+            padding: 5px 0;
+            border-top: 1px solid rgba(255, 106, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 106, 0, 0.2);
+        }
+
+        .running-text-content {
+            display: inline-block;
+            color: var(--text-gold);
+            font-size: 11px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-transform: uppercase;
+            
+            /* Animasi Gerak Jalan */
+            animation: marquee 15s linear infinite;
+            padding-left: 100%; /* Mulai dari luar kanan */
+        }
+
+        /* Definisi Gerakan Animasi */
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); } /* Berjalan ke kiri penuh */
+        }
+
+        /* --- Menu Login/Daftar --- */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: #222;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 0 15px;
+            border: 1px solid #333;
+        }
+
+        .nav-menu a {
+            color: var(--text-gold);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* --- Progress Bar (Aksen Oranye) --- */
+        .stats-box {
+            margin: 20px 15px;
+            border: 1px solid var(--border-orange); /* Border jadi oranye */
+            border-radius: 10px;
+            padding: 15px;
+            background: rgba(255, 106, 0, 0.03); /* Background tint oranye */
+        }
+
+        .stat-item {
+            margin-bottom: 15px;
+        }
+        .stat-item:last-child { margin-bottom: 0; }
+
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--text-gold);
+            margin-bottom: 8px;
+        }
+
+        .bar-bg {
+            width: 100%;
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--gradient-bar);
+            border-radius: 4px;
+        }
+
+        /* --- Main Banner Area (Aksen Oranye) --- */
+        .banner {
+            margin: 0 15px;
+            position: relative;
+            border: 1px solid var(--border-orange); /* Border jadi oranye */
+            border-radius: 12px;
+            overflow: hidden;
+            height: 400px;
+            /* Shadow diubah jadi semburat oranye */
+            box-shadow: 0 0 20px rgba(255,106,0,0.2);
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 30px;
+        }
+
+        .banner-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Gambar Neon Teks "LGOLUX" */
+        .neon-img {
+            width: 70%;
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 10px;
+            /* Efek drop shadow neon disesuaikan */
+            filter: drop-shadow(0px 0px 8px rgba(255, 106, 0, 0.7));
+        }
+
+        .title-main {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--text-white);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px #000;
+            margin: 0 0 5px 0;
+        }
+
+        .subtitle {
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            text-shadow: 1px 1px 3px #000;
+            margin-bottom: 15px;
+        }
+
+        .badges {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        .badge {
+            background: var(--accent-orange); /* Background jadi oranye */
+            font-size: 10px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* --- Tombol Bawah --- */
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 15px;
+        }
+
+        .btn {
+            background: #1e1e1e;
+            color: var(--text-gold);
+            border: 1px solid #444;
+            padding: 16px 10px;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        /* Kelas tombol dengan border oranye */
+        .btn-orange-border {
+            border-color: var(--border-orange);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-gold);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-wrapper">
+        
+        <div class="header">
+            <img src="assets/logo-lux.png" alt="LGOLUX" class="logo-img">
+            <div class="logo-sub">LIMITED GAMING ONLINE</div>
+        </div>
+
+        <div class="running-text-container">
+            <div class="running-text-content">
+                SLOT GACOR X1000 TERPOPULER PENCARIAN TERUPDATE LGOLUX !!! MINIMAL DEPOSIT 20K !!! PROSES CEPAT AMAN TERPERCAYA !!!
+            </div>
+        </div>
+
+        <div class="nav-menu">
+            <a href="https://domain-utama.com/login">LOGIN</a>
+            <span style="color:#555;">|</span>
+            <a href="https://domain-utama.com/daftar">DAFTAR</a>
+            <span style="color:#555;">|</span>
+            <a href="#">SLOT GACOR</a>
+        </div>
+
+        <div class="stats-box">
+            <div class="stat-item">
+                <div class="stat-label">
+                    <span>TRAFFIC JACKPOT</span>
+                    <span>HIGH 🔥</span>
+                </div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">
+                    <span>RTP LIVE STATISTIC</span>
+                    <span>98.8% VERY HIGH</span>
+                </div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 98%;"></div></div>
+            </div>
+        </div>
+
+        <div class="banner">
+            <img src="assets/banner-model.png" alt="Model Slot" class="banner-bg-img">
+            
+            <div class="banner-content">
+                <img src="assets/neon-teks-lux.png" alt="Lgolux Neon" class="neon-img">
+                
+                <div class="title-main">TERPERCAYA</div>
+                <div class="subtitle">SLOT-TOGEL-CASINO-SPORTBOOK<br>AMAN, RESMI & TERPERCAYA</div>
+                
+                <div class="badges">
+                    <div class="badge">MINIMAL<br>DEPO 20K</div>
+                    <div class="badge">MINIMAL<br>WEDE 20K</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-grid">
+            <a href="#" class="btn">SITUS RESMI</a>
+            <a href="#" class="btn">LINK ALTERNATIF</a>
+            <a href="#" class="btn btn-orange-border">SERVER VIP GOLD</a>
+            <a href="#" class="btn btn-orange-border">KLIK DISINI</a>
+            <a href="https://domain-utama.com/daftar" class="btn btn-orange-border">DAFTAR AKUN GACOR</a>
+            <a href="#" class="btn btn-orange-border">KLIK DISINI</a>
+        </div>
+
+        <div class="footer">
+            2026 • &copy; LGOLUX • SEO KAIRUL X<br>SLOT GACOR
+        </div>
+
+    </div>
+
+</body>
+</html>
