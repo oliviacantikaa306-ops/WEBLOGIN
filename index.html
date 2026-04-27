@@ -18,20 +18,23 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url('assets/BANNER.PNG'); /* Sesuaikan nama file assets kamu */
+            /* Pastikan di repository Github kamu, nama filenya BENAR-BENAR huruf besar semua: BANNER.PNG */
+            background-image: url('assets/BANNER.PNG'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: var(--text-white);
-            font-family: 'Montserrat', sans-serif; /* Menggunakan font Montserrat */
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
+            /* Tambahan warna fallback gelap jika gambar telat loading */
+            background-color: #111111; 
         }
 
         .mobile-wrapper {
             width: 100%;
             max-width: 480px;
-            /* Latar belakang semi-transparan agar banner di belakang terlihat */
+            /* Latar belakang semi-transparan & Efek Blur */
             background-color: rgba(15, 15, 15, 0.7); 
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -101,7 +104,7 @@
             font-size: 14px;
         }
 
-        /* --- Progress Bar Animasi Warna Warni (Tanpa Api) --- */
+        /* --- Progress Bar Animasi Warna Warni --- */
         .stats-box {
             margin: 20px 15px;
             border: 1px solid var(--border-orange);
@@ -177,14 +180,13 @@
             100% { left: 200%; } 
         }
 
-        /* --- NOTIFIKASI LIVE WD SIMPEL (TANPA KOTAK) --- */
+        /* --- NOTIFIKASI LIVE WD SIMPEL --- */
         .wd-popup-simple {
             margin: 20px 15px 5px 15px;
             text-align: center;
             font-size: 13px;
             font-weight: bold;
             color: var(--text-gold);
-            /* Transisi untuk animasi muncul tenggelam */
             opacity: 0;
             transform: translateY(-10px);
             transition: all 0.5s ease;
@@ -244,7 +246,7 @@
     <div class="mobile-wrapper">
         
         <div class="header">
-            <img src="assets/LOGO.PNG" alt="LGOLUX" class="logo-img">
+            <img src="assets/LOGO.PNG" alt="LGOLUX" class="logo-img" onerror="this.style.display='none'">
         </div>
 
         <div class="running-text-container">
@@ -280,7 +282,7 @@
 
         <div class="banner">
             <a href="#" class="universal-link">
-                <img src="assets/BANNER.JPG" alt="Banner Promo LGOLUX" class="banner-img">
+                <img src="assets/BANNER.PNG" alt="Banner Promo LGOLUX" class="banner-img" onerror="this.style.display='none'">
             </a>
         </div>
 
@@ -345,31 +347,22 @@
 
         setInterval(function() {
             const popup = document.getElementById('wd-popup-simple');
-            
-            // Hilangkan dulu (efek fade out)
             popup.classList.remove('show');
             
             setTimeout(function() {
-                // Generate huruf depan random
                 const randomHuruf = huruf.charAt(Math.floor(Math.random() * huruf.length));
                 document.getElementById('wd-user').innerText = randomHuruf + '***';
                 
-                // Generate angka random jutaan (1 juta - 25 juta, kelipatan 50rb agar realistis)
-                const randomJuta = Math.floor(Math.random() * 24) + 1; // 1-24 jt
-                const randomRatusan = (Math.floor(Math.random() * 19) + 1) * 50000; // Kelipatan 50k
+                const randomJuta = Math.floor(Math.random() * 24) + 1; 
+                const randomRatusan = (Math.floor(Math.random() * 19) + 1) * 50000; 
                 const totalWD = (randomJuta * 1000000) + randomRatusan;
                 
                 document.getElementById('wd-amount').innerText = formatRupiah(totalWD);
-                
-                // Munculkan lagi (efek fade in)
                 popup.classList.add('show');
-            }, 600); // Jeda sejenak sebelum teks baru muncul
+            }, 600); 
+        }, 4000); 
 
-        }, 4000); // Ganti data setiap 4 detik
-
-        // Trigger pertama kali agar langsung muncul
         setTimeout(() => document.getElementById('wd-popup-simple').classList.add('show'), 500);
-
     </script>
 
 </body>
