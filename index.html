@@ -7,18 +7,21 @@
     <style>
         /* --- Tema Global --- */
         :root {
-            --bg-main: #0a0000;
-            --bg-container: #111111;
             --text-gold: #f4c430;
             --text-white: #ffffff;
             --border-orange: #ff6a00;
-            --gradient-bar: linear-gradient(90deg, #ff8c00, #f9d423, #ff8c00);
+            /* Gradasi persis seperti konsep: Cyan -> Biru -> Merah -> Oranye -> Kuning */
+            --gradient-bar-colorful: linear-gradient(90deg, #4facfe 0%, #00f2fe 20%, #f5576c 50%, #ff8c00 80%, #f9d423 100%);
         }
 
+        /* --- Background Web --- */
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-main);
+            background-image: url('assets/BANNER.JPG');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text-white);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -28,9 +31,11 @@
         .mobile-wrapper {
             width: 100%;
             max-width: 480px;
-            background-color: var(--bg-container);
+            background-color: rgba(10, 10, 10, 0.9); /* Sedikit lebih gelap agar teks kontras */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             min-height: 100vh;
-            box-shadow: 0 0 30px rgba(255, 106, 0, 0.15);
+            box-shadow: 0 0 30px rgba(255, 106, 0, 0.2);
             padding-bottom: 30px;
         }
 
@@ -43,8 +48,8 @@
         }
         
         .logo-img {
-            width: 65%;
-            max-width: 250px;
+            width: 70%;
+            max-width: 260px;
             height: auto;
         }
 
@@ -53,18 +58,18 @@
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
-            margin: 15px 0;
-            background: rgba(255, 106, 0, 0.05);
-            padding: 5px 0;
+            margin: 15px 0 10px 0;
+            padding: 8px 0;
             border-top: 1px solid rgba(255, 106, 0, 0.2);
             border-bottom: 1px solid rgba(255, 106, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .running-text-content {
             display: inline-block;
             color: var(--text-gold);
             font-size: 11px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             font-weight: bold;
             text-transform: uppercase;
             animation: marquee 15s linear infinite;
@@ -81,11 +86,12 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            background: #222;
-            padding: 12px;
+            background: #1a1a1a;
+            padding: 14px;
             border-radius: 8px;
-            margin: 0 15px;
+            margin: 0 15px 20px 15px;
             border: 1px solid #333;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
 
         .nav-menu a {
@@ -93,18 +99,49 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
+            letter-spacing: 1px;
         }
 
-        /* --- Progress Bar Animasi & Efek Api --- */
-        .stats-box {
-            margin: 20px 15px;
+        /* ========================================= */
+        /* HERO CONTAINER (GABUNGAN STATS & BANNER)  */
+        /* ========================================= */
+        .hero-container {
+            margin: 0 15px;
             border: 1px solid var(--border-orange);
-            border-radius: 10px;
-            padding: 15px;
-            background: rgba(255, 106, 0, 0.03);
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.3), inset 0 0 15px rgba(255, 106, 0, 0.1);
+            overflow: hidden;
+            position: relative;
         }
 
-        .stat-item { margin-bottom: 15px; }
+        /* Efek Kilap yang menyapu seluruh kotak (Stats + Banner) */
+        .hero-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.2) 70%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shineBanner 4s infinite; 
+            pointer-events: none; 
+            z-index: 10;
+        }
+
+        @keyframes shineBanner {
+            0% { left: -150%; }
+            30% { left: 200%; } 
+            100% { left: 200%; } 
+        }
+
+        /* --- Bagian Stats (Di dalam Hero Container) --- */
+        .stats-section {
+            padding: 15px 15px 10px 15px;
+        }
+
+        .stat-item { margin-bottom: 12px; }
         .stat-item:last-child { margin-bottom: 0; }
 
         .stat-label {
@@ -114,35 +151,34 @@
             font-weight: bold;
             color: var(--text-gold);
             margin-bottom: 8px;
-            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
 
         .bar-bg {
             width: 100%;
-            height: 8px;
-            background: #333;
-            border-radius: 4px;
-            /* overflow: hidden; Dihapus agar animasi api tidak terpotong */
+            height: 10px;
+            background: #222;
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px #000;
         }
 
         .bar-fill {
             height: 100%;
-            background: var(--gradient-bar);
-            background-size: 200% 100%;
-            border-radius: 4px;
-            animation: flowingBar 2s linear infinite; 
-            position: relative; /* Ditambahkan agar api bisa menempel di ujung */
+            background: var(--gradient-bar-colorful);
+            background-size: 300% 100%;
+            border-radius: 5px;
+            animation: majuMundur 3s ease-in-out infinite alternate; 
+            position: relative; 
         }
 
-        /* Animasi Ujung Bar Api */
         .bar-fill::after {
             content: '🔥';
             position: absolute;
-            right: -8px; /* Menggeser api tepat ke ujung kanan */
-            top: -7px; /* Menyesuaikan tinggi agar pas di tengah baris */
+            right: -8px; 
+            top: -6px; 
             font-size: 14px;
-            filter: drop-shadow(0 0 5px #ff6a00); /* Efek cahaya di sekitar api */
-            animation: fireFlicker 0.6s infinite alternate; /* Animasi berkedip */
+            filter: drop-shadow(0 0 5px #ff6a00);
+            animation: fireFlicker 0.5s infinite alternate; 
         }
 
         @keyframes fireFlicker {
@@ -150,45 +186,46 @@
             100% { transform: scale(1.2) rotate(5deg); opacity: 1; }
         }
 
-        @keyframes flowingBar {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
+        @keyframes majuMundur {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
-        /* --- Banner Mengkilau (Lebih Greget) --- */
-        .banner {
-            margin: 0 15px;
-            border: 1px solid var(--border-orange);
-            border-radius: 12px;
-            overflow: hidden; 
-            box-shadow: 0 0 20px rgba(255,106,0,0.2);
-            position: relative; 
+        /* --- Bagian Banner (Di dalam Hero Container) --- */
+        .banner-section {
+            width: 100%;
+            display: block;
+            border-top: 1px solid rgba(255, 106, 0, 0.2); /* Garis pemisah tipis antara stats dan gambar */
         }
 
         .banner-img {
             width: 100%;
             height: auto;
             display: block;
+            border-bottom-left-radius: 11px;
+            border-bottom-right-radius: 11px;
         }
 
-        .banner::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 60%; /* Diperlebar sedikit */
-            height: 100%;
-            /* Intensitas putih di tengah ditingkatkan menjadi 0.9 */
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 30%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.4) 70%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            animation: shineBanner 3s infinite; /* Dipercepat dari 4s ke 3s */
-            pointer-events: none; 
+        /* --- POPUP WD RANDOM (Gaya Konsep Gambar 2) --- */
+        .wd-popup {
+            margin: 15px;
+            background: #111;
+            border: 1px solid var(--border-orange);
+            border-radius: 6px;
+            padding: 12px 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-gold);
+            box-shadow: 0 0 10px rgba(255, 106, 0, 0.1);
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.5s ease;
         }
 
-        @keyframes shineBanner {
-            0% { left: -150%; }
-            30% { left: 200%; } /* Kilau lewat lebih cepat dan menyambar */
-            100% { left: 200%; } 
+        .wd-popup.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- Tombol Bawah --- */
@@ -196,11 +233,11 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin: 20px 15px;
+            margin: 0 15px 20px 15px;
         }
 
         .btn {
-            background: #1e1e1e;
+            background: #1a1a1a;
             color: var(--text-gold);
             border: 1px solid #444;
             padding: 16px 10px;
@@ -210,16 +247,16 @@
             text-decoration: none;
             font-size: 13px;
             position: relative;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
         }
 
-        /* Tombol Menyala */
         .btn-glow {
             border-color: var(--border-orange);
             animation: glowingPulse 1.5s infinite alternate;
         }
 
         @keyframes glowingPulse {
-            0% { box-shadow: 0 0 2px var(--border-orange); }
+            0% { box-shadow: 0 0 2px var(--border-orange), inset 0 0 5px rgba(0,0,0,0.8); }
             100% { 
                 box-shadow: 0 0 15px var(--border-orange), inset 0 0 5px var(--border-orange); 
                 border-color: #ff9d00;
@@ -231,6 +268,7 @@
             margin-top: 30px;
             color: var(--text-gold);
             font-size: 14px;
+            text-shadow: 1px 1px 2px #000;
         }
     </style>
 </head>
@@ -256,27 +294,33 @@
             <a href="#" class="universal-link">SLOT GACOR</a>
         </div>
 
-        <div class="stats-box">
-            <div class="stat-item">
-                <div class="stat-label">
-                    <span>TRAFFIC JACKPOT</span>
-                    <span id="traffic-status">HIGH 🔥</span>
+        <div class="hero-container">
+            
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-label">
+                        <span>TRAFFIC JACKPOT</span>
+                        <span id="traffic-status">HIGH</span>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
                 </div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-label">
-                    <span>RTP LIVE STATISTIC</span>
-                    <span><span id="rtp-number">98.8</span>% <span id="rtp-status">VERY HIGH</span></span>
+                <div class="stat-item">
+                    <div class="stat-label">
+                        <span>RTP LIVE STATISTIC</span>
+                        <span><span id="rtp-number">98.8</span>% <span id="rtp-status">VERY HIGH</span></span>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
                 </div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
             </div>
-        </div>
 
-        <div class="banner">
-            <a href="#" class="universal-link">
+            <a href="#" class="universal-link banner-section">
                 <img src="assets/BANNER.JPG" alt="Banner Promo LGOLUX" class="banner-img">
             </a>
+
+        </div>
+
+        <div id="wd-popup" class="wd-popup">
+            💰 WD BERHASIL • Member <span id="wd-user">M***</span> WD <span id="wd-amount">Rp 3.500.000</span>
         </div>
 
         <div class="button-grid">
@@ -296,16 +340,13 @@
 
     <script>
         // ==========================================
-        // 1. SETTING LINK UNIVERSAL (UBAH DI SINI)
+        // 1. SETTING LINK UNIVERSAL
         // ==========================================
-        /* WAJIB PAKAI https:// AGAR LINK BERFUNGSI NORMAL DI BROWSER */
         const LINK_UTAMA = "https://mez.ink/daftarbarenglgolux"; 
 
-        // Proses memasukkan link ke semua tombol secara otomatis
         const allButtons = document.querySelectorAll('.universal-link');
         allButtons.forEach(button => {
             button.href = LINK_UTAMA;
-            // Opsional: Buka di tab baru saat diklik
             button.target = "_blank"; 
         });
 
@@ -321,12 +362,44 @@
 
             if (randomRTP >= 95.0) {
                 statusRTP.innerText = "VERY HIGH";
-                trafficStatus.innerText = "VERY HIGH 🔥";
+                trafficStatus.innerText = "VERY HIGH";
             } else {
                 statusRTP.innerText = "HIGH";
-                trafficStatus.innerText = "HIGH 🔥";
+                trafficStatus.innerText = "HIGH";
             }
         }, 3000); 
+
+        // ==========================================
+        // 3. LOGIKA POPUP RANDOM WD JUTAAN RUPIAH
+        // ==========================================
+        const huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        
+        function formatRupiah(angka) {
+            return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        setInterval(function() {
+            const popup = document.getElementById('wd-popup');
+            
+            popup.classList.remove('show');
+            
+            setTimeout(function() {
+                const randomHuruf = huruf.charAt(Math.floor(Math.random() * huruf.length));
+                document.getElementById('wd-user').innerText = randomHuruf + '***';
+                
+                const randomJuta = Math.floor(Math.random() * 24) + 1; 
+                const randomRatusan = (Math.floor(Math.random() * 19) + 1) * 50000; 
+                const totalWD = (randomJuta * 1000000) + randomRatusan;
+                
+                document.getElementById('wd-amount').innerText = formatRupiah(totalWD);
+                
+                popup.classList.add('show');
+            }, 600); 
+
+        }, 4000); 
+
+        setTimeout(() => document.getElementById('wd-popup').classList.add('show'), 500);
+
     </script>
 
 </body>
