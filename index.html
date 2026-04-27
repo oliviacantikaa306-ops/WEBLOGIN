@@ -95,7 +95,7 @@
             font-size: 14px;
         }
 
-        /* --- Progress Bar Animasi --- */
+        /* --- Progress Bar Animasi & Efek Api --- */
         .stats-box {
             margin: 20px 15px;
             border: 1px solid var(--border-orange);
@@ -122,7 +122,7 @@
             height: 8px;
             background: #333;
             border-radius: 4px;
-            overflow: hidden; 
+            /* overflow: hidden; Dihapus agar animasi api tidak terpotong */
         }
 
         .bar-fill {
@@ -131,6 +131,23 @@
             background-size: 200% 100%;
             border-radius: 4px;
             animation: flowingBar 2s linear infinite; 
+            position: relative; /* Ditambahkan agar api bisa menempel di ujung */
+        }
+
+        /* Animasi Ujung Bar Api */
+        .bar-fill::after {
+            content: '🔥';
+            position: absolute;
+            right: -8px; /* Menggeser api tepat ke ujung kanan */
+            top: -7px; /* Menyesuaikan tinggi agar pas di tengah baris */
+            font-size: 14px;
+            filter: drop-shadow(0 0 5px #ff6a00); /* Efek cahaya di sekitar api */
+            animation: fireFlicker 0.6s infinite alternate; /* Animasi berkedip */
+        }
+
+        @keyframes fireFlicker {
+            0% { transform: scale(0.9) rotate(-5deg); opacity: 0.8; }
+            100% { transform: scale(1.2) rotate(5deg); opacity: 1; }
         }
 
         @keyframes flowingBar {
@@ -138,7 +155,7 @@
             100% { background-position: -100% 0; }
         }
 
-        /* --- Banner Mengkilau --- */
+        /* --- Banner Mengkilau (Lebih Greget) --- */
         .banner {
             margin: 0 15px;
             border: 1px solid var(--border-orange);
@@ -159,17 +176,18 @@
             position: absolute;
             top: 0;
             left: -150%;
-            width: 50%;
+            width: 60%; /* Diperlebar sedikit */
             height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            /* Intensitas putih di tengah ditingkatkan menjadi 0.9 */
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 30%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.4) 70%, rgba(255,255,255,0) 100%);
             transform: skewX(-25deg);
-            animation: shineBanner 4s infinite; 
+            animation: shineBanner 3s infinite; /* Dipercepat dari 4s ke 3s */
             pointer-events: none; 
         }
 
         @keyframes shineBanner {
             0% { left: -150%; }
-            20% { left: 200%; } 
+            30% { left: 200%; } /* Kilau lewat lebih cepat dan menyambar */
             100% { left: 200%; } 
         }
 
@@ -262,7 +280,7 @@
         </div>
 
         <div class="button-grid">
-            <a href="#" class="btn universal-link">SITUS RESMI</a>
+            <a href="#" class="btn btn-glow universal-link">SITUS RESMI</a>
             <a href="#" class="btn btn-glow universal-link">LINK ALTERNATIF</a>
             <a href="#" class="btn btn-glow universal-link">SERVER VIP GOLD</a>
             <a href="#" class="btn btn-glow universal-link">KLIK DISINI</a>
@@ -280,7 +298,8 @@
         // ==========================================
         // 1. SETTING LINK UNIVERSAL (UBAH DI SINI)
         // ==========================================
-        const LINK_UTAMA = "mez.ink/daftarbarenglgolux"; 
+        /* WAJIB PAKAI https:// AGAR LINK BERFUNGSI NORMAL DI BROWSER */
+        const LINK_UTAMA = "https://mez.ink/daftarbarenglgolux"; 
 
         // Proses memasukkan link ke semua tombol secara otomatis
         const allButtons = document.querySelectorAll('.universal-link');
