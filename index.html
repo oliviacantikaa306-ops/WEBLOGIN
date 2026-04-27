@@ -14,7 +14,7 @@
             --gradient-bar-colorful: linear-gradient(90deg, #4facfe, #00f2fe, #f5576c, #ff8c00, #f9d423);
         }
 
-        /* --- SETUP BACKGROUND BLUR (TRIK RAHASIA) --- */
+        /* --- SETUP BACKGROUND BLUR --- */
         body {
             margin: 0;
             padding: 0;
@@ -22,35 +22,31 @@
             font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
-            background-color: #000; /* Warna dasar hitam buat jaga-jaga */
+            background-color: #000; 
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Ini yang bikin gambar BANNER.PNG jadi background blur full layar */
+        /* Menggunakan BANNER.JPG sebagai background blur */
         body::before {
             content: "";
             position: fixed;
             top: -5%; 
             left: -5%;
             width: 110%; 
-            height: 110%; /* Dilebihin 10% biar pinggiran blurnya rapi, nggak ada celah putih */
-            
-            /* PASTIKAN NAMA FILE INI SESUAI SAMA YANG DI GITHUB (HURUF BESAR/KECILNYA) */
+            height: 110%; 
+            /* PASTIKAN di Github nama filenya BANNER.JPG (huruf besar semua) */
             background-image: url('assets/BANNER.JPG'); 
-            
             background-size: cover;
             background-position: center;
-            /* Setingan blur & gelapnya di sini (mirip web LGOACE) */
-            filter: blur(25px) brightness(0.3); 
-            z-index: -1; /* Posisi paling belakang */
+            filter: blur(20px) brightness(0.3); 
+            z-index: -1; 
         }
 
         .mobile-wrapper {
             width: 100%;
             max-width: 480px;
-            /* Latar dibikin transparan hitam biar background blurnya nembus cantik */
             background-color: rgba(10, 10, 10, 0.4); 
             min-height: 100vh;
             box-shadow: 0 0 40px rgba(0,0,0,0.9);
@@ -119,7 +115,7 @@
             font-size: 14px;
         }
 
-        /* --- Progress Bar Animasi --- */
+        /* --- Progress Bar --- */
         .stats-box {
             margin: 20px 15px;
             border: 1px solid var(--border-orange);
@@ -129,8 +125,6 @@
         }
 
         .stat-item { margin-bottom: 15px; }
-        .stat-item:last-child { margin-bottom: 0; }
-
         .stat-label {
             display: flex;
             justify-content: space-between;
@@ -160,7 +154,7 @@
             100% { background-position: 100% 50%; }
         }
 
-        /* --- Banner Mengkilau --- */
+        /* --- Banner Utama --- */
         .banner {
             margin: 0 15px;
             border: 1px solid var(--border-orange);
@@ -195,17 +189,15 @@
             100% { left: 200%; } 
         }
 
-        /* --- NOTIFIKASI LIVE WD SIMPEL --- */
+                /* --- NOTIFIKASI LIVE WD SIMPEL (TANPA KOTAK) --- */
         .wd-popup-simple {
             margin: 20px 15px 5px 15px;
             text-align: center;
             font-size: 13px;
             font-weight: bold;
             color: var(--text-gold);
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid #444;
-            padding: 10px;
-            border-radius: 6px;
+            /* Tambahan bayangan hitam biar teksnya tetap terbaca jelas tanpa kotak */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); 
             opacity: 0;
             transform: translateY(-10px);
             transition: all 0.5s ease;
@@ -216,7 +208,8 @@
             transform: translateY(0);
         }
 
-        /* --- Tombol Bawah --- */
+
+        /* --- Button Grid --- */
         .button-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -237,7 +230,6 @@
             position: relative;
         }
 
-        /* Tombol Menyala */
         .btn-glow {
             border-color: var(--border-orange);
             animation: glowingPulse 1.5s infinite alternate;
@@ -325,23 +317,18 @@
     </div>
 
     <script>
-        // SETTING LINK UNIVERSAL
         const LINK_UTAMA = "https://mez.ink/daftarbarenglgolux"; 
-
         const allButtons = document.querySelectorAll('.universal-link');
         allButtons.forEach(button => {
             button.href = LINK_UTAMA;
             button.target = "_blank"; 
         });
 
-        // ANIMASI ANGKA RTP
         setInterval(function() {
             let randomRTP = (Math.random() * (99.9 - 90.0) + 90.0).toFixed(1);
             document.getElementById('rtp-number').innerText = randomRTP;
-
             let statusRTP = document.getElementById('rtp-status');
             let trafficStatus = document.getElementById('traffic-status');
-
             if (randomRTP >= 95.0) {
                 statusRTP.innerText = "VERY HIGH";
                 trafficStatus.innerText = "VERY HIGH 🔥";
@@ -351,30 +338,21 @@
             }
         }, 3000); 
 
-        // LOGIKA POPUP RANDOM WD SIMPEL JUTAAN RUPIAH
         const huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        
         function formatRupiah(angka) {
             return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
-
         setInterval(function() {
             const popup = document.getElementById('wd-popup-simple');
             popup.classList.remove('show');
-            
             setTimeout(function() {
                 const randomHuruf = huruf.charAt(Math.floor(Math.random() * huruf.length));
                 document.getElementById('wd-user').innerText = randomHuruf + '***';
-                
-                const randomJuta = Math.floor(Math.random() * 24) + 1; 
-                const randomRatusan = (Math.floor(Math.random() * 19) + 1) * 50000; 
-                const totalWD = (randomJuta * 1000000) + randomRatusan;
-                
+                const totalWD = (Math.floor(Math.random() * 24) + 1) * 1000000 + (Math.floor(Math.random() * 19) + 1) * 50000;
                 document.getElementById('wd-amount').innerText = formatRupiah(totalWD);
                 popup.classList.add('show');
             }, 600); 
         }, 4000); 
-
         setTimeout(() => document.getElementById('wd-popup-simple').classList.add('show'), 500);
     </script>
 
